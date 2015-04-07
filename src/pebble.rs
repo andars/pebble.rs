@@ -1,4 +1,10 @@
 use types::*;
+use core::intrinsics;
+
+//No idea why this doesn't work
+//use external;
+
+
 
 pub fn app_event_loop() {
     unsafe {
@@ -20,15 +26,15 @@ pub fn window_destroy(window: *mut Window) {
 
 pub fn window_set_click_config_provider<T>(window: *mut Window, func: extern fn(*mut T)) {
     unsafe {
-        ::external::window_set_click_config_provider(window, ::core::intrinsics::transmute(func));
+        ::external::window_set_click_config_provider(window, intrinsics::transmute(func));
     }
 }
 
 pub fn window_set_click_config_provider_with_context<T>(window: *mut Window, func: extern fn(*mut T), ctx: *mut TextLayer) {
     unsafe {
         ::external::window_set_click_config_provider_with_context(window,
-                                                                  ::core::intrinsics::transmute(func),
-                                                                  ::core::intrinsics::transmute(ctx));
+                                                                  intrinsics::transmute(func),
+                                                                  intrinsics::transmute(ctx));
     }
 }
 
@@ -38,9 +44,14 @@ pub fn window_set_window_handlers(window: *mut Window, handlers: WindowHandlers)
     }
 }
 
-pub fn window_stack_push(window: *mut Window, animate: u8) {
+pub fn window_stack_push(window: *mut Window, animate: bool) {
     unsafe {
-        ::external::window_stack_push(window, animate);
+        if animate {
+            ::external::window_stack_push(window, 1);
+        } else {
+            ::external::window_stack_push(window, 0);
+
+        }
     }
 }
 
