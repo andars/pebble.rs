@@ -1,0 +1,13 @@
+[package]
+name = "pebble"
+version = "0.0.1"
+authors = ["andars"]
+
+[dependencies]
+[dependencies.core]
+path = "libcore"
+
+
+[lib]
+name = "pebble"
+crate-type = ["staticlib","lib"]
