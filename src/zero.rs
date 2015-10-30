@@ -1,17 +1,14 @@
 
-#[no_stack_check]
 #[no_mangle]
 pub extern fn abort() -> ! {
     loop {}
 }
 
-#[no_stack_check]
 #[no_mangle]
 pub extern fn get_eit_entry() {
     abort();
 }
 
-#[no_stack_check]
 #[no_mangle]
 pub extern fn __aeabi_memset(dest: *mut u8, size: usize, value: u32) {
   unsafe {
@@ -21,14 +18,12 @@ pub extern fn __aeabi_memset(dest: *mut u8, size: usize, value: u32) {
 }
 
 #[doc(hidden)]
-#[no_stack_check]
 #[no_mangle]
 pub extern fn __aeabi_unwind_cpp_pr0() {
   abort();
 }
 
 #[doc(hidden)]
-#[no_stack_check]
 #[no_mangle]
 pub extern fn __aeabi_unwind_cpp_pr1() {
   abort();
