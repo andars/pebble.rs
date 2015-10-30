@@ -50,7 +50,6 @@ pub fn window_stack_push(window: *mut Window, animate: bool) {
             ::external::window_stack_push(window, 1);
         } else {
             ::external::window_stack_push(window, 0);
-
         }
     }
 }
@@ -87,7 +86,7 @@ pub fn text_layer_create(bounds: GRect) -> *mut TextLayer {
 
 pub fn text_layer_set_text(layer: *mut TextLayer, text: &str) {
     unsafe {
-        ::external::text_layer_set_text(layer, text);
+        ::external::text_layer_set_text(layer, text.as_ptr());
     }
 }
 pub fn text_layer_get_layer(layer: *mut TextLayer) -> *mut Layer {
@@ -96,3 +95,32 @@ pub fn text_layer_get_layer(layer: *mut TextLayer) -> *mut Layer {
     }
 }
 
+pub fn gbitmap_create_with_resource(id: u32) -> *mut GBitmap {
+    unsafe {
+        ::external::gbitmap_create_with_resource(id)
+    }
+}
+
+pub fn bitmap_layer_create(frame: GRect) -> *mut BitmapLayer {
+    unsafe {
+        ::external::bitmap_layer_create(frame)
+    }
+}
+
+pub fn bitmap_layer_set_bitmap(layer: *mut BitmapLayer, bitmap: *mut GBitmap) {
+    unsafe {
+        ::external::bitmap_layer_set_bitmap(layer, bitmap);
+    }
+}
+
+pub fn bitmap_layer_set_compositing_mode(layer: *mut BitmapLayer, mode: GCompOp) {
+    unsafe {
+        ::external::bitmap_layer_set_compositing_mode(layer, mode);
+    }
+}
+
+pub fn bitmap_layer_get_layer(layer: *mut BitmapLayer) -> *mut Layer {
+    unsafe {
+        ::external::bitmap_layer_get_layer(layer)
+    }
+}
