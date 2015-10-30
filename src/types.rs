@@ -1,27 +1,30 @@
-#[repr(C)]
-pub struct Window;
+pub enum Window {}
 
-#[repr(C)]
-pub struct Layer;
+pub enum Layer {}
 
-#[repr(C)]
-pub struct TextLayer;
+pub enum TextLayer {}
 
-#[repr(C)]
-pub struct ClickRecognizer;
+pub enum ClickRecognizer {}
 
+pub enum GBitmap {}
+
+pub enum BitmapLayer {}
+
+#[derive(Copy, Clone)]
 #[repr(C)]
 pub struct GPoint {
     pub x: u16,
     pub y: u16,
 }
 
+#[derive(Copy, Clone)]
 #[repr(C)]
 pub struct GSize {
     pub w: u16,
     pub h: u16,
 }
 
+#[derive(Copy, Clone)]
 #[repr(C)]
 pub struct GRect {
     pub origin: GPoint,
@@ -36,9 +39,22 @@ pub struct WindowHandlers {
     pub unload: extern fn(*mut Window),
 }
 
+#[repr(C)]
+pub enum GCompOp {
+    GCompOpAssign,
+    GCompOpAssignInverted,
+    GCompOpOr,
+    GCompOpAnd,
+    GCompOpClear,
+    GCompOpSet
+}
+
 #[allow(non_camel_case_types)]
 #[repr(u8)]
 pub enum c_void {
     __variant1,
     __variant2,
 }
+
+#[allow(non_camel_case_types)]
+pub type c_char = u8;
