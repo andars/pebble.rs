@@ -8,7 +8,7 @@ if [ -d "rust" ]; then
     git pull
     cd -
 else 
-    git clone --single-branch --depth 50 https://github.com/rust-lang/rust
+    git clone --single-branch --depth 500 https://github.com/rust-lang/rust
 fi
 
 hash=`rustc -v -V | grep commit-hash | sed 's/^commit-hash: //'`
