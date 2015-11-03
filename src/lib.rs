@@ -7,7 +7,6 @@
 #![no_std]
 
 pub use pebble::*;
-pub use types::*;
 pub use zero::*;
 
 pub mod pebble;
