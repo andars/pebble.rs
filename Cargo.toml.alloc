@@ -1,0 +1,18 @@
+[package]
+name = "alloc"
+version = "0.0.1"
+authors = ["rust project developers"]
+
+[lib]
+name = "alloc"
+path = "lib.rs"
+
+[dependencies]
+[dependencies.core]
+path = "../libcore/"
+[dependencies.alloc_system]
+path = "../liballoc_system"
+
+[features]
+default = ["external_funcs"]
+external_funcs = []

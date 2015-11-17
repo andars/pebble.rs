@@ -1,0 +1,12 @@
+[package]
+name = "alloc_system"
+version = "0.0.1"
+authors = ["andars <afoote97@gmail.com>"]
+
+[lib]
+name = "alloc_system"
+path = "lib.rs"
+
+[dependencies]
+[dependencies.core]
+path = "../libcore"

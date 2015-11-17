@@ -17,5 +17,11 @@ cd rust
 git checkout $hash
 cd -
 
+rm -f libcore
+rm -f liballoc
+
 ln -s rust/src/libcore libcore
+ln -s rust/src/liballoc liballoc
 cp Cargo.toml.core libcore/Cargo.toml
+cp Cargo.toml.alloc liballoc/Cargo.toml
+cp Cargo.toml.alloc_system liballoc_system/Cargo.toml

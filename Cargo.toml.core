@@ -1,7 +1,7 @@
 [package]
 name = "core"
 version = "0.0.1"
-authors = ["andars <afoote97@gmail.com>"]
+authors = ["rust project developers"]
 
 [lib]
 name = "core"
