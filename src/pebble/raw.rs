@@ -41,6 +41,24 @@ pub fn window_set_window_handlers(window: *mut Window, handlers: WindowHandlers)
     }
 }
 
+pub fn window_set_background_color(window: *mut Window, color: GColor) {
+    unsafe {
+        external::window_set_background_color(window, color);
+    }
+}
+
+pub fn window_set_user_data<T>(window: *mut Window, data: *mut T) {
+    unsafe {
+        external::window_set_user_data(window, intrinsics::transmute(data));
+    }
+}
+
+pub fn window_get_user_data<T>(window: *mut Window) -> *mut T {
+    unsafe {
+        intrinsics::transmute(external::window_get_user_data(window))
+    }
+}
+
 pub fn window_stack_push(window: *mut Window, animate: bool) {
     unsafe {
         if animate {
@@ -63,6 +81,24 @@ pub fn window_single_click_subscribe<T>(button: u8, func: extern fn(*mut ClickRe
     }
 }
 
+pub fn layer_create(bounds: GRect) -> *mut Layer {
+    unsafe {
+        external::layer_create(bounds)
+    }
+}
+
+pub fn layer_destroy(layer: *mut Layer) {
+    unsafe {
+        external::layer_destroy(layer);
+    }
+}
+
+pub fn layer_get_frame(layer: *mut Layer) -> GRect {
+    unsafe {
+        external::layer_get_frame(layer)
+    }
+}
+
 pub fn layer_get_bounds(layer: *mut Layer) -> GRect {
     unsafe {
         external::layer_get_bounds(layer)
@@ -72,6 +108,18 @@ pub fn layer_get_bounds(layer: *mut Layer) -> GRect {
 pub fn layer_add_child(layer: *mut Layer, child: *mut Layer) {
     unsafe {
         external::layer_add_child(layer, child);
+    }
+}
+
+pub fn layer_mark_dirty(layer: *mut Layer) {
+    unsafe {
+        external::layer_mark_dirty(layer);
+    }
+}
+
+pub fn layer_set_update_proc(layer: *mut Layer, func: extern fn(*mut Layer, *mut GContext)) {
+    unsafe {
+        external::layer_set_update_proc(layer, func);
     }
 }
 
@@ -119,5 +167,53 @@ pub fn bitmap_layer_set_compositing_mode(layer: *mut BitmapLayer, mode: GCompOp)
 pub fn bitmap_layer_get_layer(layer: *mut BitmapLayer) -> *mut Layer {
     unsafe {
         external::bitmap_layer_get_layer(layer)
+    }
+}
+
+pub fn graphics_context_set_fill_color(ctx: *mut GContext, color: GColor) {
+    unsafe {
+        external::graphics_context_set_fill_color(ctx, color);
+    }
+}
+
+pub fn graphics_fill_circle(ctx: *mut GContext, center: GPoint, radius: u16) {
+    unsafe {
+        external::graphics_fill_circle(ctx, center, radius);
+    }
+}
+
+pub fn clock_is_24h_style() -> bool {
+    unsafe {
+        let response = external::clock_is_24h_style();
+        if response == 0 {
+            false
+        } else {
+            true
+        }
+    }
+}
+
+pub fn tick_timer_service_subscribe(unit: TimeUnits, func: extern fn(*mut TM, TimeUnits)) {
+    unsafe {
+        external::tick_timer_service_subscribe(unit, func);
+    }
+}
+
+pub fn time() -> usize {
+    unsafe {
+        external::time(0 as *mut usize)
+    }
+}
+
+pub fn localtime(now: usize) -> *mut TM {
+    unsafe {
+        let now_ptr = &now as *const usize;
+        external::localtime(now_ptr)
+    }
+}
+
+pub fn app_log(msg: &str) {
+    unsafe {
+        external::app_log(50, "main\0".as_ptr(), 0, msg.as_ptr());
     }
 }

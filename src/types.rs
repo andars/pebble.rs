@@ -8,7 +8,22 @@ pub enum ClickRecognizer {}
 
 pub enum GBitmap {}
 
+pub enum GContext {}
+
 pub enum BitmapLayer {}
+
+#[repr(C)]
+pub struct TM {
+    pub tm_sec: u32,
+    pub tm_min: u32,
+    pub tm_hour: u32,
+    pub tm_mday: u32,
+    pub tm_mon: u32,
+    pub tm_year: u32,
+    pub tm_wday: u32,
+    pub tm_yday: u32,
+    pub tm_isdst: u32
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -47,6 +62,23 @@ pub enum GCompOp {
     GCompOpAnd,
     GCompOpClear,
     GCompOpSet
+}
+
+#[repr(C)]
+pub enum GColor {
+    GColorClear = -1,
+    GColorBlack = 0,
+    GColorWhite = 1
+}
+
+#[repr(C)]
+pub enum TimeUnits {
+    SECOND_UNIT=1,
+    MINUTE_UNIT,
+    HOUR_UNIT,
+    DAY_UNIT,
+    MONTH_UNIT,
+    YEAR_UNIT
 }
 
 #[allow(non_camel_case_types)]
