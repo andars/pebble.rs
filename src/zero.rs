@@ -1,3 +1,4 @@
+use pebble::raw;
 
 #[no_mangle]
 pub extern fn abort() -> ! {
@@ -32,5 +33,6 @@ pub extern fn __aeabi_unwind_cpp_pr1() {
 #[lang="stack_exhausted"] extern fn stack_exhausted() {}
 #[lang="eh_personality"] extern fn eh_personality() {}  
 #[lang="panic_fmt"] pub fn panic_fmt(_fmt: &::core::fmt::Arguments, _file_line: &(&'static str, usize)) -> ! { 
+    raw::app_log("PANIC\0");
     loop { } 
 }
