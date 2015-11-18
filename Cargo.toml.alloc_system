@@ -7,3 +7,6 @@ authors = ["andars <afoote97@gmail.com>"]
 name = "alloc_system"
 path = "lib.rs"
 
+[dependencies]
+[dependencies.core]
+path = "../libcore"
