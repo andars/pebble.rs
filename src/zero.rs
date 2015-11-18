@@ -10,6 +10,7 @@ pub extern fn get_eit_entry() {
     abort();
 }
 
+/*
 #[no_mangle]
 pub extern fn __aeabi_memset(dest: *mut u8, size: usize, value: u32) {
   unsafe {
@@ -17,6 +18,7 @@ pub extern fn __aeabi_memset(dest: *mut u8, size: usize, value: u32) {
     volatile_set_memory(dest, value as u8, size);
   }
 }
+*/
 
 #[doc(hidden)]
 #[no_mangle]
