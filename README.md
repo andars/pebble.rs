@@ -1,4 +1,4 @@
-##Pebble.rs
+## Pebble.rs
 
 Pebble.rs is a crate that allows [rust](http://www.rust-lang.org) to be used to
 develop Pebble applications. It is compatible with SDK 3.0 and is known to work
@@ -11,7 +11,7 @@ To see an example application using Pebble.rs, look
 *This is very much a work in progress and currently has very limited
 capabilities.* **But it does work ;)**
 
-##NOTE:
+## NOTE:
 
 As of now, this library requires a patch to the pebble sdk. When bundling the app,
 the pebble sdk parses the output of `readelf` with the assumption that there will
